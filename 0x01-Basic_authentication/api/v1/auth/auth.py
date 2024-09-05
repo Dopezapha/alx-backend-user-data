@@ -29,9 +29,10 @@ class Auth:
         """
         Check the authorization header
         """
-        if request is None:
-            return None
-        return request.headers.get('Authorization')
+        key = 'Authorization'
+        if request is None or key not in request.headers:
+            return
+        return request.headers.get(key)
 
     def current_user(self, request=None) -> None:
         """
